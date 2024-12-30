@@ -1,0 +1,80 @@
+{
+    "Tables": {
+        "Customers": {
+            "Name": "tblKlYpPhgDFxtBne",
+            "Fields": {
+                "IsUnregistered": "Is unregistered",
+                "Name": "Customer name",
+                "PhoneNumber": "Phone number",
+                "Email": "Email",
+                "CountryCode": "Country code"
+            }
+        },
+        "Authentication": {
+            "Name": "tblxuhLXMC9n5ePJw"
+        },
+        "ServiceDrivings": {
+            "Name": "tblpwh7xC5jungQKF",
+            "Fields": {
+                "StartTime": "Start",
+                "EndTime": "End",
+                "ServiceArea": "Service area",
+                "Orders": "Orders",
+                "OrderCount": "Order count",
+                "MaxOrderCount": "Max order count"
+            }
+        },
+        "ServiceAreas": {
+            "Name": "tbl1ByAcpkGWLG53Q",
+            "Fields": {
+                "ZipNumbers": "Zip numbers",
+                "ServicePartner": "Service partner"
+            }
+        },
+        "ServicePartners": {
+            "Name": "tbl9Cxxnuv8DFnHeO",
+            "Fields": {
+                "Name": "Firma navn",
+                "Address": "Adresse",
+                "Phone": "Telefon",
+                "Email": "E-mail",
+                "VAT": "CVR#",
+                "Approval": "Godkendelse",
+                "ServiceAreas": "Service areas"
+            }
+        },
+        "Orders": {
+            "Name": "tbljQZwFFS2oPkzUG",
+            "Fields": {
+                "Customer": "Kunder",
+                "System": "Vælg anlæg",
+                "ServiceDrivings": "Service drivings",
+                "Status": "Status"
+            }
+        },
+        "CustomerSystems": {
+            "Name": "Anlæg",
+            "Fields": {
+                "CreateDate": "Oprettelsesdato",
+                "Customers": "Kunder",
+                "CustomerLookup": "SYSTEM_CustomerIDs",
+                "QR": "QR",
+                "Name": "Anlægsnavn",
+                "Type": "Anlægstype",
+                "NumberOfInteriorUnits": "Antal indedele",
+                "Brand": "Varmepumpemærke",
+                "SerialNumberOutdoorPart": "Udedel serienr",
+                "LocationOutdoorPart": "Udedel placering",
+                "Address": "Anlægsadresse",
+                "AddressZip": "Anlægsadresse postnummer",
+                "Images": "Generelle billeder"
+            }
+        },
+        "HeatpumpBrands": {
+            "Name": "tbl92DhIZnTjs5bLV",
+            "Fields": {
+                "Name": "Navn"
+            }
+        }
+    }
+}

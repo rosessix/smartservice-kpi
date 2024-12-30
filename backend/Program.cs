@@ -19,6 +19,24 @@ builder.Services.AddCors(options => {
 builder.Services.AddControllers();
 builder.Services.AddScoped<DatabaseService>();
 
+
+builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("Utils/airtableConstants.json", optional: false, reloadOnChange: true);
+
+builder.Services.AddScoped<IAirtableService>(provider =>
+{
+    var config = builder.Configuration.GetSection("Airtable");
+    var apiKey = config.GetValue<string>("API_KEY");
+    var baseId = config.GetValue<string>("BASE_ID");
+
+    if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(baseId))
+    {
+        throw new ArgumentException("Airtable API Key and Base ID must be provided, Program.");
+    }
+
+    return new AirtableService(apiKey, baseId);
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -26,6 +44,8 @@ using (var scope = app.Services.CreateScope())
     var databaseService = scope.ServiceProvider.GetRequiredService<DatabaseService>();
     await SeedAdminUserAsync(databaseService);
 }
+
+
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
