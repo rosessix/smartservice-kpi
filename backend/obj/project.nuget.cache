@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nj4Mn4PLeVE=",
+  "dgSpecHash": "e8ciBG5ILnU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\marcu\\Music\\Datamatiker\\hoveopgave\\backend\\..csproj",
+  "projectFilePath": "D:\\Spil\\Github\\smartservice-kpi\\backend\\..csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marcu\\.nuget\\packages\\airtableapiclient\\1.0.0\\airtableapiclient.1.0.0.nupkg.sha512",
     "C:\\Users\\marcu\\.nuget\\packages\\bouncycastle.cryptography\\2.3.1\\bouncycastle.cryptography.2.3.1.nupkg.sha512",

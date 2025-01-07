@@ -112,3 +112,7 @@ C:\Users\marcu\Music\Datamatiker\hoveopgave\backend\obj\Debug\net8.0\ref\..dll
 C:\Users\marcu\Music\Datamatiker\hoveopgave\backend\bin\Debug\net8.0\utils\airtableConstants.json
 C:\Users\marcu\Music\Datamatiker\hoveopgave\backend\bin\Debug\net8.0\AirtableApiClient.dll
 C:\Users\marcu\Music\Datamatiker\hoveopgave\backend\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Spil\Github\smartservice-kpi\backend\bin\Debug\net8.0\utils\airtableConstants.json
+D:\Spil\Github\smartservice-kpi\backend\bin\Debug\net8.0\AirtableApiClient.dll
+D:\Spil\Github\smartservice-kpi\backend\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Spil\Github\smartservice-kpi\backend\obj\Debug\net8.0\..sourcelink.json
