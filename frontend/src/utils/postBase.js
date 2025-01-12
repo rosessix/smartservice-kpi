@@ -15,6 +15,6 @@ export const postBase = async ({controller, endpoint, params}) => {
         }
     } catch(err) {
         console.log(err)
-        alert(err)
+        // alert(err)
     }
 }

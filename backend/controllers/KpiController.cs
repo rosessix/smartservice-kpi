@@ -107,5 +107,60 @@ public class KpiController : ControllerBase {
             return StatusCode(500, "An error occurred while fetching ServiceDrivings.");
         }
     }
+
+    [HttpGet("heatpumps")]
+    public async Task<ActionResult> HeatPumps()
+    {
+        using var airTable = airtable.Connect;
+        var records = new List<AirtableRecord>();
+        string? offset = null;
+
+        try
+        {
+            do
+            {
+                // Ensure all arguments match the expected method signature
+                var response = await airTable.ListRecords(
+                    (string)airtableConfig.Tables.CustomerSystems.Name,
+                    offset: offset,
+                    fields: [
+                        "Anlægsadresse",
+                        "Opgave type",
+                        "Garanti",
+                        "Grossist",
+                        "Udedel serienr",
+                        "Anlægstype",
+                    ]
+                );
+
+                if (response.Success)
+                {
+                    records.AddRange(response.Records);
+                    offset = response.Offset;
+                }
+                else
+                {
+                    Console.WriteLine($"Error fetching records (ServiceDrivings): {response.AirtableApiError.ErrorMessage}");
+                    break; // Exit the loop if there's an error
+                }
+
+            } while (offset != null);
+
+            var kpiData = records.Select(record => new
+            {
+                Id = record.Id,
+                CreatedTime = record.CreatedTime,
+                Fields = record.Fields
+            }).ToList();
+
+
+            return Ok(kpiData); // Assuming you want to return the records
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+            return StatusCode(500, "An error occurred while fetching ServiceDrivings.");
+        }
+    }
     
 }

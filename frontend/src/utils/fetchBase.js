@@ -17,6 +17,6 @@ export const fetchBase = async ({controller, endpoint, params}) => {
         return json
     } catch(err) {
         console.log(err)
-        alert(err)
+        // alert(err)
     }
 }
