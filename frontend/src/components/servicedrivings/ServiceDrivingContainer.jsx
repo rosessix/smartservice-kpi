@@ -3,28 +3,13 @@ import { ServiceDrivingCard } from './ServiceDrivingCard'
 import { fetchBase } from '../../utils/fetchBase';
 import ServiceDrivingChart from './ServiceDrivingChart';
 
-export const ServiceDrivingContainer = ({startDate, endDate}) => {
-    const [drivingData, setDrivingData] = useState([])
-    const fetchDrivings = async () => {
-        const json = await fetchBase({
-            endpoint: 'servicedrivings',
-            controller: 'kpi',
-        });
-        setDrivingData(json);
-    };
-
-    useEffect(() => {
-        fetchDrivings()
-    }, [])
-    
+export const ServiceDrivingContainer = ({drivingData, startDate, endDate}) => {
     return (
-        <div class="flex gap-4 flex-col p-2">
-            <div className='w-[48rem]'>
-                {drivingData.length == 0 ? <h1 class="text-2xl">Ingen data</h1> : 
-                    <ServiceDrivingChart drivings={drivingData} startDate={startDate} endDate={endDate}/>
-                }
+        <div class="flex gap-4 flex-col bg-white shadow-md rounded-lg p-2">
+            <div className='w-full'>
+                <ServiceDrivingChart drivings={drivingData} startDate={startDate} endDate={endDate}/>
             </div>
-            <ServiceDrivingCard drivings={drivingData} startDate={startDate} endDate={endDate}/>
+            {/* <ServiceDrivingCard drivings={drivingData} startDate={startDate} endDate={endDate}/> */}
         </div>
     )
 }

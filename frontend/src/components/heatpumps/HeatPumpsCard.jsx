@@ -48,9 +48,9 @@ export const HeatPumpsCard = ({ pumps, startDate, endDate }) => {
     const { baselineCount, gainedCount, percentageRise } = getPumpsCount();
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-2 w-80">
+        <div className="bg-white shadow-md rounded-lg p-2 w-full">
             <p className="text-gray-500 text-sm mb-2">
-                Kørsler i perioden {start.toLocaleDateString()} til {end.toLocaleDateString()}
+                Varmepumper i perioden {start.toLocaleDateString()} til {end.toLocaleDateString()}
             </p>
             <h1 className="font-bold text-5xl text-center text-gray-800">{gainedCount}</h1>
             <p

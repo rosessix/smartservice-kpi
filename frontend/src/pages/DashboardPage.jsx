@@ -6,26 +6,44 @@ import DatePicker from 'react-datepicker';
 import { CustomerChart } from '../components/CustomerChart';
 import {ServiceDrivingContainer} from '../components/servicedrivings/ServiceDrivingContainer';
 import { HeatPumpsContainer } from '../components/heatpumps/HeatPumpsContainer';
+import { ServiceDrivingCard } from '../components/servicedrivings/ServiceDrivingCard';
+import { HeatPumpsCard } from '../components/heatpumps/HeatPumpsCard';
 
 export const DashboardPage = () => {
     const navigate = useNavigate();
-    const [customersData, setCustomersData] = useState([]);
     const [startDate, setStartDate] = useState(new Date('2023-10-01'));
     const [endDate, setEndDate] = useState(new Date());
     const [dataCategory, setDataCategory] = useState('customers'); // Default category
     const categories = ['customers', 'heat pumps', 'service drivings']; // Add more as needed
-
-    const hasFetched = useRef(false)
-
+    
+    // data categories
+    const [customersData, setCustomersData] = useState([]);
+    const [heatpumpsData, setHeatpumpData] = useState([]);
+    const [serviceDrivingData, setserviceDrivingData] = useState([]);
+    
     const fetchCustomers = async () => {
-        hasFetched.current = false
         const json = await fetchBase({
             endpoint: 'customers',
             controller: 'kpi',
         });
         setCustomersData(json);
-        hasFetched.current = true
     };
+
+    const fetchHeatPumps = async () => {
+        const json = await fetchBase({
+            endpoint: 'heatpumps',
+            controller: 'kpi',
+        });
+        setHeatpumpData(json);
+    }
+
+    const fetchServiceDrivings = async () => {
+        const json = await fetchBase({
+            endpoint: 'servicedrivings',
+            controller: 'kpi',
+        });
+        setserviceDrivingData(json);
+    }
 
     useEffect(() => {
         const hasToken = localStorage.getItem('token');
@@ -34,32 +52,9 @@ export const DashboardPage = () => {
         }
 
         fetchCustomers();
+        fetchHeatPumps();
+        fetchServiceDrivings();
     }, []);
-
-    const renderView = () => {
-        if (!hasFetched.current) {
-            return <h1 class="text-2xl">Loading...</h1>
-        }
-        switch (dataCategory) {
-            case 'customers':
-                return (
-                    <div class="flex gap-4 flex-col p-2">
-                        <div className="w-[48rem]">
-                            <CustomerChart customers={customersData} startDate={startDate} endDate={endDate} />
-                        </div>
-                        <div class="flex flex-row gap-2">
-                            <CustomerCard customers={customersData} startDate={startDate} endDate={endDate} />
-                        </div>
-                    </div>
-                );
-            case 'heat pumps':
-                return <HeatPumpsContainer startDate={startDate} endDate={endDate}/>
-            case 'service drivings':
-                return <ServiceDrivingContainer startDate={startDate} endDate={endDate}/>;
-            default:
-                return <p>Unknown category</p>;
-        }
-    };
 
     return (
         <div class="bg-neutral-200 h-screen w-screen p-2">
@@ -72,22 +67,21 @@ export const DashboardPage = () => {
                     <p class="text-gray-500">Slut dato:</p>
                     <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
                 </div>
-                <div class="bg-white p-2 rounded-md">
-                    <p class="text-gray-500">Data kategori</p>
-                    <select
-                        value={dataCategory}
-                        onChange={(e) => setDataCategory(e.target.value)}
-                        className="border rounded"
-                    >
-                        {categories.map((category) => (
-                            <option key={category} value={category}>
-                                {category}
-                            </option>
-                        ))}
-                    </select>
-                </div>
             </div>
-            <div className="mt-4">{renderView()}</div>
+            <div className="mt-4 grid grid-cols-2 [grid-template-rows:repeat(2,_0.7fr)] w-full gap-2">
+                <div class="bg-white shadow-md rounded-lg p-2">
+                    <CustomerChart customers={customersData} startDate={startDate} endDate={endDate} />
+                </div>
+                <HeatPumpsContainer heatpumpsData={heatpumpsData} startDate={startDate} endDate={endDate}/>
+                <div class="grid grid-cols-1 [grid-template-rows:repeat(2,_0.7fr)] gap-2 w-full">
+                    <CustomerCard customers={customersData} startDate={startDate} endDate={endDate}/>
+                    <div class="flex gap-2">
+                        <ServiceDrivingCard drivings={serviceDrivingData} startDate={startDate} endDate={endDate}/>
+                        <HeatPumpsCard pumps={heatpumpsData} startDate={startDate} endDate={endDate}/>
+                    </div>
+                </div>
+                <ServiceDrivingContainer drivingData={serviceDrivingData} startDate={startDate} endDate={endDate}/>
+            </div>
         </div>
     );
 };

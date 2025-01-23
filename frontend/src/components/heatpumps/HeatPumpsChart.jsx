@@ -26,6 +26,7 @@ const HeatPumpsChart = ({ pumps, startDate, endDate }) => {
 
         const data = Object.keys(monthlyData)
             .map(monthKey => ({
+                name: 'Antal varmepumper',
                 date: monthKey,
                 value: monthlyData[monthKey],
             }))
@@ -38,10 +39,12 @@ const HeatPumpsChart = ({ pumps, startDate, endDate }) => {
 
     const chart = {
         height: 350,
+        // width: 150,
         autoFit: true,
         xField: 'date',
         yField: 'value',
         smooth: true,
+        seriesField: 'name',
         meta: {
             value: {
                 max: maxValue,
@@ -52,11 +55,7 @@ const HeatPumpsChart = ({ pumps, startDate, endDate }) => {
 
     };
 
-    return maxValue === 0 ? (
-        <h1>Der er ingen pumps for given periode.</h1>
-    ) : (
-        <ColumnChart {...chart} />
-    );
+    return <ColumnChart {...chart} />
 };
 
 export default HeatPumpsChart;

@@ -43,3 +43,10 @@ function App() {
 }
 
 export default App
+
+
+/*
+  Grid view med flere kort/grafer
+  Value i graf skal ændres til respektive værdier [x]
+  skelet istedet for ingen data.
+*/

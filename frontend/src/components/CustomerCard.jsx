@@ -51,7 +51,7 @@ export const CustomerCard = ({ customers, startDate, endDate }) => {
     const { baselineCount, gainedCount, percentageRise } = getCustomerCounts();
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-4 w-80">
+        <div className="bg-white shadow-md rounded-lg p-4 w-full">
             <p className="text-gray-500 text-sm mb-2">
                 Kunder - fra {start.toLocaleDateString()} til {end.toLocaleDateString()}
             </p>

@@ -48,7 +48,7 @@ export const ServiceDrivingCard = ({ drivings, startDate, endDate }) => {
     const { baselineCount, gainedCount, percentageRise } = getDrivingsCount();
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-2 w-80">
+        <div className="bg-white shadow-md rounded-lg p-2 w-full">
             <p className="text-gray-500 text-sm mb-2">
                 Kørsler i perioden {start.toLocaleDateString()} til {end.toLocaleDateString()}
             </p>

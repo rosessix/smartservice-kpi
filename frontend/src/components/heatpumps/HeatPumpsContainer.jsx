@@ -3,30 +3,13 @@ import { fetchBase } from '../../utils/fetchBase'
 import { HeatPumpsCard } from './HeatPumpsCard';
 import HeatPumpsChart from './HeatPumpsChart';
 
-export const HeatPumpsContainer = ({startDate, endDate}) => {
-    const [heatpumpsData, setHeatpumpsData] = useState([])
-    const fetchPumps = async () => {
-        const json = await fetchBase({
-            endpoint: 'heatpumps',
-            controller: 'kpi',
-        });
-        setHeatpumpsData(json);
-    };
-
-    useEffect(() => {
-        if (heatpumpsData.length == 0) {
-            fetchPumps()
-        }
-    }, [])
-    
+export const HeatPumpsContainer = ({heatpumpsData, startDate, endDate}) => {
     return (
-        <div class="flex gap-4 flex-col p-2">
-            <div className='w-[48rem]'>
-                {heatpumpsData.length == 0 ? <h1 class="text-2xl">Ingen data</h1> : 
-                    <HeatPumpsChart pumps={heatpumpsData} startDate={startDate} endDate={endDate}/>
-                }
+        <div class="flex gap-4 flex-col bg-white shadow-md rounded-lg p-2">
+            <div className='w-full'>
+                <HeatPumpsChart pumps={heatpumpsData} startDate={startDate} endDate={endDate}/>
             </div>
-            <HeatPumpsCard pumps={heatpumpsData} startDate={startDate} endDate={endDate}/>
+            {/* <HeatPumpsCard pumps={heatpumpsData} startDate={startDate} endDate={endDate}/> */}
         </div>
     )
 }

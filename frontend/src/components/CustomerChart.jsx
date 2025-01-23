@@ -31,6 +31,7 @@ export const CustomerChart = ({ customers, startDate, endDate }) => {
         // Convert the map into an array of objects and sort it by date
         const data = Object.keys(monthlyData)
             .map(monthKey => ({
+                name: 'Antal kunder',
                 date: monthKey,
                 value: monthlyData[monthKey],
             }))
@@ -48,6 +49,7 @@ export const CustomerChart = ({ customers, startDate, endDate }) => {
         xField: 'date',
         yField: 'value',
         smooth: true,
+        seriesField: 'name',
         meta: {
             value: {
                 max: maxValue,
@@ -58,5 +60,5 @@ export const CustomerChart = ({ customers, startDate, endDate }) => {
 
     }
     
-    return maxValue == 0 ? <h1>Der er ingen kunder for given periode.</h1> : <ColumnChart {...chart} />
+    return <ColumnChart {...chart} />
 }

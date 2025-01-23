@@ -8,6 +8,7 @@ const ServiceDrivingChart = ({ drivings, startDate, endDate }) => {
 
         const filteredDrivings = drivings.filter(driving => {
             const dateDrived = new Date(driving.fields?.Start); // Safely access fields.Start
+            console.log(driving.fields)
             return dateDrived >= start && dateDrived <= end;
         });
 
@@ -26,6 +27,7 @@ const ServiceDrivingChart = ({ drivings, startDate, endDate }) => {
 
         const data = Object.keys(monthlyData)
             .map(monthKey => ({
+                name: 'Antal kørsler',
                 date: monthKey,
                 value: monthlyData[monthKey],
             }))
@@ -38,10 +40,12 @@ const ServiceDrivingChart = ({ drivings, startDate, endDate }) => {
 
     const chart = {
         height: 350,
+        width: 150,
         autoFit: true,
         xField: 'date',
         yField: 'value',
         smooth: true,
+        seriesField: 'name',
         meta: {
             value: {
                 max: maxValue,
