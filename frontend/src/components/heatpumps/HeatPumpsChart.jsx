@@ -15,7 +15,7 @@ const HeatPumpsChart = ({ pumps, startDate, endDate }) => {
             const dateDrived = new Date(drive.createdTime);
             const month = dateDrived.getMonth();
             const year = dateDrived.getFullYear();
-
+            
             // Format the key as 'YYYY-MM'
             const monthKey = `${year}-${month + 1 < 10 ? '0' + (month + 1) : month + 1}`;
 
